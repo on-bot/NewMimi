@@ -22,20 +22,23 @@ class Utils(commands.Cog):
             return False
 
     def isValid(self, member):
-        vibe_squad = discord.utils.get(member.guild.roles, id=ethos['role_ids']['vibe_squad_id'])
-        knight = discord.utils.get(member.guild.roles, id=ethos['role_ids']['knight_id'])
-        if member.top_role == vibe_squad:
-            second_highest_role = [role for role in member.roles][-2]
-            if second_highest_role.position >= knight.position:
-                return True
+        if member.guild.id == ethos['guild_id']:
+            vibe_squad = discord.utils.get(member.guild.roles, id=ethos['role_ids']['vibe_squad_id'])
+            knight = discord.utils.get(member.guild.roles, id=ethos['role_ids']['knight_id'])
+            if member.top_role == vibe_squad:
+                second_highest_role = [role for role in member.roles][-2]
+                if second_highest_role.position >= knight.position:
+                    return True
+                else:
+                    return False
             else:
-                return False
+                role = discord.utils.get(member.guild.roles, id=ethos['role_ids']['knight_id'])
+                if member.top_role.position >= role.position:
+                    return True
+                else:
+                    return False
         else:
-            role = discord.utils.get(member.guild.roles, id=ethos['role_ids']['knight_id'])
-            if member.top_role.position >= role.position:
-                return True
-            else:
-                return False
+            return True
 
     async def winner_embed(self, ctx, text):
         embed = discord.Embed(colour=discord.Colour.green())
