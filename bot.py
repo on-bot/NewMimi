@@ -30,7 +30,7 @@ async def mainload():
 
 async def main():
     await mainload()
-    await client.start("TOKEN")
+    await client.start(os.environ["DISCORD_TOKEN"])
 
 
 asyncio.run(main())
