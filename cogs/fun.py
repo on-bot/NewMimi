@@ -4,8 +4,8 @@ import random
 import requests
 from discord.ext import commands
 import json
-from NewMimiDiscord.cogs.databasecog import Database
-from NewMimiDiscord.cogs.utils import Utils
+from cogs.databasecog import Database
+from cogs.utils import Utils
 
 conf = open("./cogs/config.json")
 config = json.load(conf)
