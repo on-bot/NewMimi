@@ -111,7 +111,7 @@ class Fun(commands.Cog):
                     await self.utils.draw_embed(ctx, 'It\'s a tie! :/')
 
     @commands.command()
-    async def meowfact(self, ctx):
+    async def catfact(self, ctx):
         if self.utils.isValid(ctx.author):
             r = requests.get("https://meowfacts.herokuapp.com/").content
             r = json.loads(r)
