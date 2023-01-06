@@ -35,7 +35,7 @@ class Listeners(commands.Cog):
             if message.guild.id == config['guilds']['imperial']['guild_id']:
                 if message.channel.id == 988374129226965012:   # Bots Channel ID
                     if message.content == "/resend-roles":
-                        file = discord.File("crew3_select.png", filename="crew3_select.png")
+                        file = discord.File("./cogs/crew3_select.png", filename="./cogs/crew3_select.png")
                         await message.reply("Make sure to select Crew3 bot while typing the command", file=file)
 
                 if 'no role' in message.content.lower() or "haven't got role" in message.content.lower() or "haven't got my role" in message.content.lower():
