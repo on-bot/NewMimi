@@ -32,6 +32,19 @@ class Listeners(commands.Cog):
             valid = True
 
         if valid:
+            if message.guild.id == config['guilds']['imperium']['guild_id']:
+                if message.channel.id == 988374129226965012:   # Bots Channel ID
+                    if message.content == "/resend-roles":
+                        file = discord.File("crew3_select.png", filename="crew3_select.png")
+                        await message.reply("Make sure to select Crew3 bot while typing the command", file=file)
+
+                if 'no role' in message.content.lower() or "haven't got role" in message.content.lower() or "haven't got my role" in message.content.lower():
+                    await message.reply(
+                        "go to <#988374129226965012> and type /resend-roles make sure to select crew3 bot to get your roles")
+
+                if "how" in message.content.lower() and "role" in message.content.lower():
+                    await message.reply("Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
+                    
             if message.guild.id == ethos['guild_id']:
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
