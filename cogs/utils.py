@@ -60,6 +60,12 @@ class Utils(commands.Cog):
         embed.set_author(name=text)
         msg = await msg.reply(embed=embed)
         return msg
+    
+    async def pink_embed(self, msg, text):
+        embed = discord.Embed(colour=discord.Color.from_rgb(225, 198, 153))
+        embed.set_author(name=text)
+        msg = await msg.reply(embed=embed)
+        return msg
 
 
 async def setup(client):
