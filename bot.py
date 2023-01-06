@@ -7,9 +7,7 @@ from discord.ext import commands
 intents = discord.Intents.all()
 intents.members = True
 
-command_list = ["Mimi ", "mimi "]
-
-client = commands.Bot(intents=intents, command_prefix=command_list, case_insensitive=True)
+client = commands.Bot(intents=intents, command_prefix='.', case_insensitive=True, help_command=None)
 
 
 @client.command()
@@ -24,6 +22,20 @@ async def unload(ctx, extension):
     await ctx.send(f"{extension} unloaded successfully.")
 
 
+@client.command()
+async def help(ctx):
+    embed = discord.Embed(
+        title="Help",
+        description="Mimi here to help",
+        colour=discord.Colour.purple()
+    )
+    embed.set_footer(text=f'Requested by - {ctx.author}', icon_url=ctx.author.avatar.url)
+    embed.add_field(name="General", value="`credits`", inline=False)
+    embed.add_field(name="Moderation", value="`--Secret--`", inline=False)
+    embed.add_field(name="Fun", value="`say`, `cat`, `selfie`, `rps`, `meowfact`")
+    await ctx.send(embed=embed)
+
+    
 async def mainload():
     for filename in os.listdir('./cogs'):
         if filename.endswith('.py'):
