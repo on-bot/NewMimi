@@ -32,7 +32,7 @@ class Listeners(commands.Cog):
             valid = True
 
         if valid:
-            if message.guild.id == config['guilds']['imperium']['guild_id']:
+            if message.guild.id == config['guilds']['imperial']['guild_id']:
                 if message.channel.id == 988374129226965012:   # Bots Channel ID
                     if message.content == "/resend-roles":
                         file = discord.File("crew3_select.png", filename="crew3_select.png")
