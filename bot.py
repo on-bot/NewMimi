@@ -7,7 +7,9 @@ from discord.ext import commands
 intents = discord.Intents.all()
 intents.members = True
 
-client = commands.Bot(intents=intents, command_prefix='.', case_insensitive=True, help_command=None)
+commands_list = ['mimi ', 'Mimi ']
+
+client = commands.Bot(intents=intents, command_prefix=commands_list, case_insensitive=True, help_command=None)
 
 
 @client.command()
