@@ -34,7 +34,7 @@ async def help(ctx):
     embed.set_footer(text=f'Requested by - {ctx.author}', icon_url=ctx.author.avatar.url)
     embed.add_field(name="General", value="`credits`", inline=False)
     embed.add_field(name="Moderation", value="`--Secret--`", inline=False)
-    embed.add_field(name="Fun", value="`say`, `cat`, `selfie`, `rps`, `meowfact`, `kill`, `tickle`")
+    embed.add_field(name="Fun", value="`say`, `cat`, `selfie`, `rps`, `catfact`, `kill`, `tickle`")
     await ctx.send(embed=embed)
 
     
