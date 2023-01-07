@@ -121,19 +121,21 @@ class Fun(commands.Cog):
             
     @commands.command()
     async def kill(self, ctx, user: discord.User):
-        if ctx.guild.id == ethos['guild_id']:
-            return
-        img_list = self.db.query().find_one({"_id": "kill"})['gif_list']
-        embed = discord.Embed(title=f"**{ctx.author.name} killed {user.name}**", description=f"{user.mention} was killed. *No Way ;;;*", colour=discord.Colour.red())
-        embed.set_image(url=f"{random.choice(img_list)}")
-        await ctx.send(embed=embed)
+        if self.utils.isValid(ctx.author):
+            if ctx.guild.id == ethos['guild_id']:
+                return
+            img_list = self.db.query().find_one({"_id": "kill"})['gif_list']
+            embed = discord.Embed(title=f"**{ctx.author.name} killed {user.name}**", description=f"{user.mention} was killed. *No Way ;;;*", colour=discord.Colour.red())
+            embed.set_image(url=f"{random.choice(img_list)}")
+            await ctx.send(embed=embed)
 
     @commands.command()
     async def tickle(self, ctx, user: discord.User):
-        embed = discord.Embed(title=f"**{user.name} has been tickled!**", description=f"{ctx.author.mention} tickles {user.mention} *nyaa*",
-                              colour=discord.Colour.magenta())
-        embed.set_image(url=f"https://cdn.nekos.life/tickle/tickle_{str(random.choice(list(range(1,21)))).zfill(3)}.gif")
-        await ctx.send(embed=embed)            
+        if self.utils.isValid(ctx.author):
+            embed = discord.Embed(title=f"**{user.name} has been tickled!**", description=f"{ctx.author.mention} tickles {user.mention} *nyaa*",
+                                  colour=discord.Colour.magenta())
+            embed.set_image(url=f"https://cdn.nekos.life/tickle/tickle_{str(random.choice(list(range(1,21)))).zfill(3)}.gif")
+            await ctx.send(embed=embed)            
 
 
 async def setup(client):
