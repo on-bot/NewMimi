@@ -14,6 +14,7 @@ class Listeners(commands.Cog):
 
     def __init__(self, client):
         self.client = client
+        self.utils = Utils(self.client)
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -22,16 +23,8 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.guild.id == ethos['guild_id']:
-            knight = discord.utils.get(message.guild.roles, id=ethos['role_ids']['knight_id'])
-            if message.author.top_role < knight:
-                valid = False
-            else:
-                valid = True
-        else:
-            valid = True
-
-        if valid:
+        
+        if self.utils.isValid(message.author):
             if message.guild.id == config['guilds']['imperial']['guild_id']:
                 if message.channel.id == 988374129226965012:   # Bots Channel ID
                     if message.content == "/resend-roles":
