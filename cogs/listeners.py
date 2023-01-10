@@ -42,10 +42,8 @@ class Listeners(commands.Cog):
             if message.guild.id == ethos['guild_id']:
                 if "ethos" in message.content.lower() and not message.author.bot:
                     if "role" in message.content.lower() and "how" in message.content.lower():
-                        file = discord.File("./cogs/ethos_quest.jpg", filename="./cogs/ethos_quest.jpg")
-                        await message.reply(
-                            "Complete the Ethos quest on crew3 of Sui Global and claim it on their server, you will see the role in your profile on their server",
-                            file=file)
+                        file = discord.File("./cogs/how_ethos.jpg", filename="./cogs/how_ethos.jpg")
+                        await message.reply(file=file)
                 elif "role" in message.content.lower() and "how" in message.content.lower() and not message.author.bot:
                     await message.reply("Check <#1045037086186672228>")
                     
