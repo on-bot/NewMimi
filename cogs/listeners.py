@@ -40,11 +40,11 @@ class Listeners(commands.Cog):
                     await message.reply("Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
                     
             if message.guild.id == ethos['guild_id']:
-                if "how" in message.content.lower() and "role" in message.content.lower() and "ethos" in message.content.lower():
+                if "how" in message.content.lower() and "role" in message.content.lower() and "ethos" in message.content.lower() and not message.author.bot:
                     file = discord.File("./cogs/ethos_quest.jpg", filename="./cogs/ethos_quest.jpg")
                     await message.reply("Complete the Ethos quest on crew3 of Sui Global and claim it on their server, you will see the role in your profile on their server", file=file)
                     
-                if "ethos" in message.content.lower() and "role" in message.content.lower():
+                if "ethos" in message.content.lower() and "role" in message.content.lower() and not message.author.bot:
                     file = discord.File("./cogs/ethos_quest.jpg", filename="./cogs/ethos_quest.jpg")
                     await message.reply("Complete the Ethos quest on crew3 of Sui Global and claim it on their server, you will see the role in your profile on their server", file=file)
                     
