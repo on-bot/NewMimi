@@ -40,6 +40,9 @@ class Listeners(commands.Cog):
                     await message.reply("Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
                     
             if message.guild.id == ethos['guild_id']:
+                if "how" in message.content.lower() and "role" in message.content.lower():
+                    await message.reply("Check <#1045037086186672228>")
+                    
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
                 elif message.content.lower()[0:9] == "mimi come":
