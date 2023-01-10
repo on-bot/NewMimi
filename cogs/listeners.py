@@ -51,6 +51,8 @@ class Listeners(commands.Cog):
                         await message.reply(
                             "Complete the Ethos quest on crew3 of Sui Global and claim it on their server, you will see the role in your profile on their server",
                             file=file)
+                elif "role" in message.content.lower() and not message.author.bot:
+                    await message.reply("Check <#1045037086186672228>")
                     
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
