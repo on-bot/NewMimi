@@ -25,6 +25,14 @@ class Listeners(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         
+        if message.guild.id == ethos['guild_id']:
+                if "ethos" in message.content.lower() and not message.author.bot:
+                    if "role" in message.content.lower() and "how" in message.content.lower():
+                        file = discord.File("./cogs/how_ethos.jpg", filename="./cogs/how_ethos.jpg")
+                        await message.reply(file=file)
+                elif "role" in message.content.lower() and "how" in message.content.lower() and not message.author.bot:
+                    await message.reply("Check <#1045037086186672228>")
+        
         if self.utils.isValid(message.author):
             if message.guild.id == config['guilds']['imperial']['guild_id']:
                 if message.channel.id == 988374129226965012:   # Bots Channel ID
@@ -40,12 +48,6 @@ class Listeners(commands.Cog):
                     await message.reply("Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
                     
             if message.guild.id == ethos['guild_id']:
-                if "ethos" in message.content.lower() and not message.author.bot:
-                    if "role" in message.content.lower() and "how" in message.content.lower():
-                        file = discord.File("./cogs/how_ethos.jpg", filename="./cogs/how_ethos.jpg")
-                        await message.reply(file=file)
-                elif "role" in message.content.lower() and "how" in message.content.lower() and not message.author.bot:
-                    await message.reply("Check <#1045037086186672228>")
                     
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
