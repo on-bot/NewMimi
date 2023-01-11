@@ -24,18 +24,34 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        
         if message.guild.id == ethos['guild_id']:
-                if "ethos" in message.content.lower() and not message.author.bot:
-                    if "role" in message.content.lower() and "how" in message.content.lower():
-                        file = discord.File("./cogs/how_ethos.jpg", filename="./cogs/how_ethos.jpg")
-                        await message.reply(file=file)
-                elif "role" in message.content.lower() and "how" in message.content.lower() and not message.author.bot:
-                    await message.reply("Check <#1045037086186672228>")
-        
+            if self.utils.checkWords(["ethos", "how", "role"], message):
+                file = discord.File("./cogs/how_ethos.jpg", filename="./cogs/how_ethos.jpg")
+                await message.reply(file=file)
+            elif self.utils.checkWords(["how", "role"], message):
+                await message.reply("Check <#1045037086186672228>")
+            elif self.utils.checkWords(["how", "get", "og"], message):
+                await message.reply("Check <#1045037086186672228>")
+            elif self.utils.checkWords(["what", "vibe", "squad"], message):
+                await message.reply("Check <#1045037086186672228>")
+            elif self.utils.checkWords(["what", "vibesquad"], message):
+                await message.reply("Check <#1045037086186672228>")
+            elif self.utils.checkWords(["thanks", "mimi"], message):
+                await message.reply("meowww :mimi: ")
+            elif self.utils.checkWords(["thank you", "mimi"], message):
+                await message.reply("meowww :mimi: ")
+            elif self.utils.checkWords(["cant", "access", "dashboard"], message) or self.utils.checkWords(["cannot", "access", "dashboard"], message):
+                await message.reply("As we're still on devnet, the devnet has some instability issues, it's getting fixed soon, apologies for the troubles that you're facing :(")
+            elif self.utils.checkWords(["cant", "open", "dashboard"], message) or self.utils.checkWords(["cannot", "open", "dashboard"], message):
+                await message.reply("As we're still on devnet, the devnet has some instability issues, it's getting fixed soon, apologies for the troubles that you're facing :(")
+            elif self.utils.checkWords(["how", "xp"], message):
+                await message.reply("You can gain xp and get level roles explained in <#1045037086186672228> by talking with us in <#1039374105754992754> or winning games in <#1039374105754992754> when the mods host games, sometimes the mods also host competitions in <#1042631697767862283> , participating there can get you xp too ;)")
+            elif self.utils.checkWords(["how", "global", "hunter"], message):
+                await message.reply("They are the members from Sui Global who participated in the quest. Their role doesn't have any special perks other than a role badge.\nYou can ask the mods to assign you this role if you want it")
+
         if self.utils.isValid(message.author):
             if message.guild.id == config['guilds']['imperial']['guild_id']:
-                if message.channel.id == 988374129226965012:   # Bots Channel ID
+                if message.channel.id == 988374129226965012:  # Bots Channel ID
                     if message.content == "/resend-roles":
                         file = discord.File("./cogs/crew3_select.png", filename="./cogs/crew3_select.png")
                         await message.reply("Make sure to select Crew3 bot while typing the command", file=file)
@@ -45,10 +61,11 @@ class Listeners(commands.Cog):
                         "go to <#988374129226965012> and type /resend-roles make sure to select crew3 bot to get your roles")
 
                 if "how" in message.content.lower() and "role" in message.content.lower():
-                    await message.reply("Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
-                    
+                    await message.reply(
+                        "Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
+
             if message.guild.id == ethos['guild_id']:
-                    
+
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
                 elif message.content.lower()[0:9] == "mimi come":
