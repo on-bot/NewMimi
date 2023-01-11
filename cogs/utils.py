@@ -40,6 +40,14 @@ class Utils(commands.Cog):
         else:
             return True
 
+    def checkWords(self, listofwords, message):
+        if message.author.bot:
+            return False
+        for word in listofwords:
+            if word.lower() not in message.content.lower():
+                return False
+        return True
+
     async def winner_embed(self, ctx, text):
         embed = discord.Embed(colour=discord.Colour.green())
         embed.set_author(name=text)
