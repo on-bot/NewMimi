@@ -37,9 +37,9 @@ class Listeners(commands.Cog):
             elif self.utils.checkWords(["what", "vibesquad"], message):
                 await message.reply("Check <#1045037086186672228>")
             elif self.utils.checkWords(["thanks", "mimi"], message):
-                await message.reply("meowww :mimi: ")
+                await message.reply("meowww :cat: ")
             elif self.utils.checkWords(["thank you", "mimi"], message):
-                await message.reply("meowww :mimi: ")
+                await message.reply("meowww :cat: ")
             elif self.utils.checkWords(["cant", "access", "dashboard"], message) or self.utils.checkWords(["cannot", "access", "dashboard"], message):
                 await message.reply("As we're still on devnet, the devnet has some instability issues, it's getting fixed soon, apologies for the troubles that you're facing :(")
             elif self.utils.checkWords(["cant", "open", "dashboard"], message) or self.utils.checkWords(["cannot", "open", "dashboard"], message):
@@ -65,7 +65,8 @@ class Listeners(commands.Cog):
                         "Complete the Crew3 tasks for the role, Check out <#989413155841138708> for the crew3 link")
 
             if message.guild.id == ethos['guild_id']:
-
+                if self.utils.checkWords(['who', 'brother', 'mimi'], message):
+                    await message.reply("It's <@1047503386251120660>, my smol brother he is kinda annoying meow")
                 if message.content.lower() == "meow" or message.content.lower()[0:9] == "mimi meow":
                     await message.reply("nyaaa :cat: ")
                 elif message.content.lower()[0:9] == "mimi come":
