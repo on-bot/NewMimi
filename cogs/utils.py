@@ -25,7 +25,14 @@ class Utils(commands.Cog):
         if member.guild.id == ethos['guild_id']:
             vibe_squad = discord.utils.get(member.guild.roles, id=ethos['role_ids']['vibe_squad_id'])
             knight = discord.utils.get(member.guild.roles, id=ethos['role_ids']['knight_id'])
+            og = discord.utils.get(member.guild.roles, id=ethos['role_ids']['og_id'])
             if member.top_role == vibe_squad:
+                second_highest_role = [role for role in member.roles][-2]
+                if second_highest_role.position >= knight.position:
+                    return True
+                else:
+                    return False
+            elif member.top_role == og:
                 second_highest_role = [role for role in member.roles][-2]
                 if second_highest_role.position >= knight.position:
                     return True
