@@ -122,8 +122,6 @@ class Fun(commands.Cog):
     @commands.command()
     async def kill(self, ctx, user: discord.User):
         if self.utils.isValid(ctx.author):
-            if ctx.guild.id == ethos['guild_id']:
-                return
             img_list = self.db.query().find_one({"_id": "kill"})['gif_list']
             embed = discord.Embed(title=f"**{ctx.author.name} killed {user.name}**", description=f"{user.mention} was killed. *No Way ;;;*", colour=discord.Colour.red())
             embed.set_image(url=f"{random.choice(img_list)}")

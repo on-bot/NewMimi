@@ -48,6 +48,8 @@ class Listeners(commands.Cog):
                 await message.reply("You can gain xp and get level roles explained in <#1045037086186672228> by talking with us in <#1039374105754992754> or winning games in <#1039374105754992754> when the mods host games, sometimes the mods also host competitions in <#1042631697767862283> , participating there can get you xp too ;)")
             elif self.utils.checkWords(["how", "global", "hunter"], message):
                 await message.reply("They are the members from Sui Global who participated in the quest. Their role doesn't have any special perks other than a role badge.\nYou can ask the mods to assign you this role if you want it")
+            elif self.utils.checkWords(["mimi", "yay"], message):
+                await message.reply("hehe, im da biggest meow")
 
         if self.utils.isValid(message.author):
             if message.guild.id == config['guilds']['imperial']['guild_id']:

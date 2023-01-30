@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import json
+import re
 
 conf = open("./cogs/config.json")
 config = json.load(conf)
@@ -51,7 +52,7 @@ class Utils(commands.Cog):
         if message.author.bot:
             return False
         for word in listofwords:
-            if word.lower() not in message.content.lower():
+            if not re.search(r"\b" + word + r"\b", message.content.lower()):
                 return False
         return True
 
