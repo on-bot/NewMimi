@@ -1,1 +1,1 @@
-worker: python bot.py
+worker: python bot.py & node indexaco.js & wait -n
