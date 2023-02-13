@@ -1,8 +1,6 @@
 import { MongoClient } from "mongodb";
 import axios from "axios";
 
-config();
-
 const MONGO_TOKEN = process.env.MONGO_TOKEN;
 
 const client = new MongoClient(MONGO_TOKEN);
