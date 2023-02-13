@@ -1,4 +1,3 @@
-import { config } from "dotenv";
 import { MongoClient } from "mongodb";
 import axios from "axios";
 
