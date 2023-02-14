@@ -92,14 +92,18 @@ export async function timeCheck() {
 
 export async function newDay(){
     let connec = await dbConnection();
-    connec.deleteOne({"_id":"target"})
+//     connec.deleteOne({"_id":"target"})
     let timeUnix = Math.floor(Date.now() / 1000);
     console.log(timeUnix)
     let target = timeUnix + 200
-    connec.insertOne({"_id": "target", "time": target})
+//     connec.insertOne({"_id": "target", "time": target})
+    await connec.updateOne(
+    { _id: "target" },
+    { $set: { users: [] } }
+    );
     await connec.updateOne(
     { _id: "userlist" },
-    { $set: { users: [] } }
+    { $set: { "time": target } }
     );
 }
 
