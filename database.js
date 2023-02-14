@@ -98,11 +98,11 @@ export async function newDay(){
     let target = timeUnix + 200
 //     connec.insertOne({"_id": "target", "time": target})
     await connec.updateOne(
-    { _id: "target" },
+    { _id: "userlist" },
     { $set: { users: [] } }
     );
     await connec.updateOne(
-    { _id: "userlist" },
+    { _id: "target" },
     { $set: { "time": target } }
     );
 }
