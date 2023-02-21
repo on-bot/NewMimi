@@ -46,6 +46,7 @@ async def mainload():
 
 async def main():
     await mainload()
+    print(os.environ["DISCORD_TOKEN"])
     await client.start(os.environ["DISCORD_TOKEN"])
 
 
