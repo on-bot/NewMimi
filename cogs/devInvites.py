@@ -128,7 +128,7 @@ class DevInvites(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.channel.id == dev["channel_ids"]["mod_bots"]:
+        if message.channel.id == dev["channel_ids"]["invite_check"]:
             if message.author.id == 720351927581278219:
                 for embed in message.embeds:
                     invites = self.get_invites_num(embed.description)
