@@ -136,6 +136,24 @@ class DevInvites(commands.Cog):
                     name, desc = title.strip('**').split('#')
                     await self.give_role(name, desc, invites)
 
+    @commands.command()
+    async def close_games(self, ctx):
+        dart_ripper = discord.utils.get(ctx.guild.roles, id=1072892527507681410)
+        games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
+        permissions = games_channel.overwrites_for(dart_ripper)
+        permissions.send_messages = False
+        await games_channel.set_permissions(dart_ripper, overwrite=permissions)
+        await ctx.send("closed")
+
+    @commands.command()
+    async def open_games(self, ctx):
+        dart_ripper = discord.utils.get(ctx.guild.roles, id=1072892527507681410)
+        games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
+        permissions = games_channel.overwrites_for(dart_ripper)
+        permissions.send_messages = True
+        await games_channel.set_permissions(dart_ripper, overwrite=permissions)
+        await ctx.send("opened")
+
 
 async def setup(client):
     await client.add_cog(DevInvites(client))
