@@ -97,7 +97,7 @@ client.on("messageCreate", async (message) => {
               console.log(`Deleted message from ${msg.author.username}`)
             )
             .catch((error) => console.log("message already deleted err"));
-        }, 5000);
+        }, 10000);
       });
   }
 });
