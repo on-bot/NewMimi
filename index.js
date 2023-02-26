@@ -4,8 +4,7 @@ import {
   ActionRowBuilder,
   StringSelectMenuBuilder,
   ButtonBuilder,
-  ButtonStyle,
-  EmbedBuilder
+  ButtonStyle
 } from "discord.js";
 import { addUser, isNewUser, xpGiver, timeCheck } from "./database.js";
 
@@ -41,18 +40,11 @@ client.on("interactionCreate", async (interaction) => {
         interaction.deferReply();
         setTimeout(() => {
           interaction.deleteReply();
-          let logChannel = client.channels.fetch("1047132047275208745")
           interaction.channel.send({
             content: `<@${interaction.member.id}> chose ${interaction.values[0]} and got ${xp}xp`,
           });
           xpGiver(interaction.member.id, xp);
           addUser(interaction.member.id);
-          const exampleEmbed = new EmbedBuilder()
-          .setColor('#32CD32')
-          .setTitle('Coffee XP')
-          .setDescription(`**You received ${xp}xp** 👾`)
-          .setTimestamp()
-          logChannel.then(channel => channel.send({content: `<@${interaction.member.id}>`, embeds: [ exampleEmbed ]}))
         }, 1000);
       }
     }
@@ -80,6 +72,7 @@ client.on("interactionCreate", async (interaction) => {
 });
 
 client.on("messageCreate", async (message) => {
+  // Barista channel to gm-gn here
   if (message.content.toLowerCase() === "gm" && message.channel.id === "1068875112629141584" && await isNewUser(message.author.id)) {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
