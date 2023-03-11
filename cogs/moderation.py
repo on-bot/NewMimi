@@ -58,8 +58,8 @@ class Moderation(commands.Cog):
                 await ctx.send(f"Couldn't find {len(left_over)} users")
 
     @commands.command()
-    async def ungib(self, ctx, role: discord.Role):
-        """ Removes Role of Given list of Usernames (Works Usernames, File) """
+    async def gib(self, ctx, role: discord.Role):
+        """ Remove Roles to Given list of Usernames (Works Usernames, File) """
         if ctx.author.guild_permissions.manage_roles:
             left_over = []
             successful = []
@@ -73,12 +73,8 @@ class Moderation(commands.Cog):
                 await ctx.send("on it :cat:")
                 if message.attachments:
                     attachment = message.attachments[0]
-                    url = attachment.url
-                    r = requests.get(url, allow_redirects=True)
-
-                    open('temp.txt', 'wb').write(r.content)
-                    username_list = open('temp.txt', encoding='utf-8').read().splitlines()
-                    os.remove("temp.txt")
+                    with attachment.save() as file:
+                        username_list = file
                 else:
                     msg = message.content
                     username_list = msg.split('\n')
@@ -89,7 +85,6 @@ class Moderation(commands.Cog):
                         user = discord.utils.get(ctx.guild.members, name=namez, discriminator=id)
                     except:
                         user = None
-
                     if user == None:
                         left_over.append(username)
                     else:
@@ -106,6 +101,7 @@ class Moderation(commands.Cog):
                     await message.channel.send(wled)
                 if 14 < len(nwled) < 1900:
                     await message.channel.send(nwled)
+
                 await ctx.send(f"Successfully done for {len(successful)} users")
                 await ctx.send(f"Couldn't find {len(left_over)} users")
 
