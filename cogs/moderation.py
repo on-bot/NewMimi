@@ -58,7 +58,7 @@ class Moderation(commands.Cog):
                 await ctx.send(f"Couldn't find {len(left_over)} users")
 
     @commands.command()
-    async def gib(self, ctx, role: discord.Role):
+    async def ungib(self, ctx, role: discord.Role):
         """ Remove Roles to Given list of Usernames (Works Usernames, File) """
         if ctx.author.guild_permissions.manage_roles:
             left_over = []
