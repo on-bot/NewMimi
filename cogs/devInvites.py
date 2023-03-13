@@ -138,21 +138,39 @@ class DevInvites(commands.Cog):
 
     @commands.command()
     async def close_games(self, ctx):
-        dart_ripper = discord.utils.get(ctx.guild.roles, id=1072892527507681410)
+        everyone_role = ctx.guild.default_role
         games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
-        permissions = games_channel.overwrites_for(dart_ripper)
+        permissions = games_channel.overwrites_for(everyone_role)
         permissions.send_messages = False
-        await games_channel.set_permissions(dart_ripper, overwrite=permissions)
+        await games_channel.set_permissions(everyone_role, overwrite=permissions)
         await ctx.send("closed")
 
     @commands.command()
     async def open_games(self, ctx):
-        dart_ripper = discord.utils.get(ctx.guild.roles, id=1072892527507681410)
+        everyone_role = ctx.guild.default_role
         games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
-        permissions = games_channel.overwrites_for(dart_ripper)
+        permissions = games_channel.overwrites_for(everyone_role)
         permissions.send_messages = True
-        await games_channel.set_permissions(dart_ripper, overwrite=permissions)
+        await games_channel.set_permissions(everyone_role, overwrite=permissions)
         await ctx.send("opened")
+
+    @commands.command()
+    async def no_photos(self, ctx):
+        everyone_role = ctx.guild.default_role
+        games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
+        permissions = games_channel.overwrites_for(everyone_role)
+        permissions.attach_files = False
+        await games_channel.set_permissions(everyone_role, overwrite=permissions)
+        await ctx.send("photos perm negative :cat: ")
+
+    @commands.command()
+    async def yes_photos(self, ctx):
+        everyone_role = ctx.guild.default_role
+        games_channel = discord.utils.get(ctx.guild.channels, id=1078671451386818560)
+        permissions = games_channel.overwrites_for(everyone_role)
+        permissions.attach_files = True
+        await games_channel.set_permissions(everyone_role, overwrite=permissions)
+        await ctx.send("photos perm affirmative :cat: ")
 
 
 async def setup(client):
