@@ -6,7 +6,7 @@ import re
 conf = open("./cogs/config.json")
 config = json.load(conf)
 
-# Ethos
+# Dev
 dev = config['guilds']['dev']
 
 
@@ -135,6 +135,18 @@ class DevInvites(commands.Cog):
                     title = embed.title
                     name, desc = title.strip('**').split('#')
                     await self.give_role(name, desc, invites)
+        if message.guild.id == dev["guild_id"]:
+            the_dev = message.guild.get_role(dev["role_ids"]["dev"])
+            senior = message.guild.get_role(dev["role_ids"]["senior"])
+            junior = message.guild.get_role(dev["role_ids"]["junior"])
+            user = message.author
+            if not the_dev in user.roles and not senior in user.roles and not junior in user.roles:
+                links = [".com", ".net", ".org", ".co", ".us", ".ml", ".tk", ".ga", ".cf", ".gq", "https", ".io"
+                         "MINTING LIVE NOW", "http", "👉 http", "mint.io", "claim here", ]
+                white = ["tenor"]
+                if any(word in message.content.lower() for word in links) and any(word not in message.content.lower() for word in white):
+                    print("shoulda delete")
+                    await message.delete()
 
     @commands.command()
     async def close_games(self, ctx):
