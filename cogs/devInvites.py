@@ -148,6 +148,15 @@ class DevInvites(commands.Cog):
                     print("shoulda delete")
                     await message.delete()
 
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        if payload.guild_id == dev['guild_id']:
+            if payload.emoji.name in ["🤮", "💀", "☠", "🤬", "💩", "🤡", "🖕", "👎", "📉"]:
+                channel = await self.client.fetch_channel(payload.channel_id)
+                message = await channel.fetch_message(payload.message_id)
+                user = await self.client.fetch_user(payload.user_id)
+                await message.remove_reaction(payload.emoji, user)
+
     @commands.command()
     async def close_games(self, ctx):
         everyone_role = ctx.guild.default_role
@@ -183,6 +192,34 @@ class DevInvites(commands.Cog):
         permissions.attach_files = True
         await games_channel.set_permissions(everyone_role, overwrite=permissions)
         await ctx.send("photos perm affirmative :cat: ")
+
+    @commands.command()
+    async def lock_server(self, ctx):
+        texts_channel_id = 1067860917355823196
+        bots_category_id = 1077393251708981369
+        ama_stage_id = 1067860917355823197
+        channels = [texts_channel_id, bots_category_id, ama_stage_id]
+        everyone = ctx.guild.default_role
+        for channel in channels:
+            category = await self.client.fetch_channel(channel)
+            permissions = category.overwrites_for(everyone)
+            permissions.send_messages = False
+            await category.set_permissions(everyone, overwrite=permissions)
+        await ctx.send(f"Locked")
+
+    @commands.command()
+    async def unlock_server(self, ctx):
+        texts_channel_id = 1067860917355823196
+        bots_category_id = 1077393251708981369
+        ama_stage_id = 1067860917355823197
+        channels = [texts_channel_id, bots_category_id, ama_stage_id]
+        everyone = ctx.guild.default_role
+        for channel in channels:
+            category = await self.client.fetch_channel(channel)
+            permissions = category.overwrites_for(everyone)
+            permissions.send_messages = True
+            await category.set_permissions(everyone, overwrite=permissions)
+        await ctx.send(f"Unlocked")
 
 
 async def setup(client):
