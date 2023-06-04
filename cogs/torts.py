@@ -6,7 +6,7 @@ conf = open("./cogs/config.json")
 config = json.load(conf)
 
 # Torts
-torts = config['guilds']['test']
+torts = config['guilds']['torts']
 
 
 class Torts(commands.Cog):
