@@ -1,6 +1,8 @@
 from discord.ext import commands
 import json
 import asyncio
+import discord
+import os
 
 conf = open("./cogs/config.json")
 config = json.load(conf)

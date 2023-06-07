@@ -199,35 +199,22 @@ class Moderation(commands.Cog):
         user_ids = []
         user_wallets = []
         user_names = []
-        async for message in channel.history(limit=200):
-            if message.content.startswith('0x') and message.author.id not in user_ids:
+        async for message in channel.history(limit=300):
+            if message.content.startswith('bc') and message.author.id not in user_ids:
                 user_ids.append(message.author.id)
                 user_names.append(message.author.name + '#' + str(message.author.discriminator))
                 user_wallets.append(message.content)
         user_ids.reverse()
         user_wallets.reverse()
         user_names.reverse()
-        with open("user_ids.txt", 'w', encoding='utf-8') as f:
-            for user in user_ids:
-                f.write(str(user) + '\n')
+        with open("results.csv", 'w', encoding='utf-8') as f:
+            f.write(f"DiscordID,Username,Wallet\n")
+            for i in range(len(user_ids)):
+                f.write(f"{user_ids[i]},{user_names[i]},{user_wallets[i]}\n")
 
-        with open("user_names.txt", 'w', encoding='utf-8') as f:
-            for user in user_names:
-                f.write(str(user) + '\n')
-
-        with open("wallets.txt", 'w', encoding='utf-8') as f:
-            for wallet in user_wallets:
-                f.write(str(wallet) + '\n')
-
-        file = discord.File("user_ids.txt")
-        await ctx.send(file=file, content="IDs of Users")
-        os.remove('user_ids.txt')
-        file = discord.File("user_names.txt")
-        await ctx.send(file=file, content="Usernames")
-        os.remove('user_names.txt')
-        file = discord.File("wallets.txt")
-        await ctx.send(file=file, content="Wallets")
-        os.remove('wallets.txt')
+        file = discord.File("results.csv")
+        await ctx.send(file=file, content=">.<")
+        os.remove('results.csv')
 
 
 async def setup(client):
