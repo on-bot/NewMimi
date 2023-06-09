@@ -286,6 +286,27 @@ class Moderation(commands.Cog):
         file = discord.File("results.csv")
         await ctx.send(file=file, content=">.<")
         os.remove('results.csv')
+        
+    @commands.command()
+    async def get_id(self, ctx, role: discord.Role):
+        # Get the guild (server) where the command is executed
+        guild = ctx.guild
+
+        # Retrieve member IDs with the specified role
+        member_ids = [member.id for member in guild.members if role in member.roles]
+
+        # Write the member IDs to a text file
+        with open('user_ids.txt', 'w') as file:
+            file.write('\n'.join(str(id) for id in member_ids))
+
+        # Create a discord.File object with the text file
+        file = discord.File('user_ids.txt')
+
+        # Send the file as a response
+        await ctx.send(f"User IDs with the role '{role.name}':", file=file)
+
+        # Delete the file after sending
+        os.remove('user_ids.txt')
 
 
 async def setup(client):
