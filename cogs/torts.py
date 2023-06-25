@@ -24,7 +24,7 @@ class Torts(commands.Cog):
             if not tort_team in user.roles and not communitytort in user.roles:
                 links = [".com", ".net", ".org", ".co", ".us", ".ml", ".tk", ".ga", ".cf", ".gq", "https", ".io"
                          "MINTING LIVE NOW", "http", "👉 http", "mint.io", "claim here", ]
-                white = ["tenor", "giphy"]
+                white = ["tenor"]
                 if any(word in message.content.lower() for word in links) and any(word not in message.content.lower() for word in white):
                     print("shoulda delete")
                     await message.delete()
